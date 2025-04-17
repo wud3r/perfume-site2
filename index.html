@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парфюмерия на разлив</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 20px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .volume-selection {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .volume-selection button {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .volume-selection button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .order-form {
+            margin-top: 15px;
+        }
+
+        input[type="text"], input[type="phone"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button.order-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.order-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Парфюмерия на разлив</h1>
+    </header>
+
+    <div class="products">
+        <!-- Card 1 -->
+        <div class="product-card" id="product1">
+            <img src="https://via.placeholder.com/250x250?text=Product1" alt="Product 1">
+            <div class="product-title">Dior Sauvage</div>
+            <div class="price" id="price1">Цена: 300 ₽</div>
+            <div class="volume-selection">
+                <button data-volume="5" class="volume-btn active" onclick="updatePrice('product1', 5, 300)">5 мл</button>
+                <button data-volume="10" class="volume-btn" onclick="updatePrice('product1', 10, 550)">10 мл</button>
+                <button data-volume="15" class="volume-btn" onclick="updatePrice('product1', 15, 1400)">15 мл</button>
+            </div>
+            <div class="order-form">
+                <input type="text" placeholder="Ваше имя">
+                <input type="phone" placeholder="Ваш телефон">
+                <button class="order-btn">Заказать</button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="product-card" id="product2">
+            <img src="https://via.placeholder.com/250x250?text=Product2" alt="Product 2">
+            <div class="product-title">Chanel Coco Mademoiselle</div>
+            <div class="price" id="price2">Цена: 320 ₽</div>
+            <div class="volume-selection">
+                <button data-volume="5" class="volume-btn active" onclick="updatePrice('product2', 5, 320)">5 мл</button>
+                <button data-volume="10" class="volume-btn" onclick="updatePrice('product2', 10, 600)">10 мл</button>
+                <button data-volume="15" class="volume-btn" onclick="updatePrice('product2', 15, 1450)">15 мл</button>
+            </div>
+            <div class="order-form">
+                <input type="text" placeholder="Ваше имя">
+                <input type="phone" placeholder="Ваш телефон">
+                <button class="order-btn">Заказать</button>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card" id="product3">
+            <img src="https://via.placeholder.com/250x250?text=Product3" alt="Product 3">
+            <div class="product-title">Creed Aventus</div>
+            <div class="price" id="price3">Цена: 400 ₽</div>
+            <div class="volume-selection">
+                <button data-volume="5" class="volume-btn active" onclick="updatePrice('product3', 5, 400)">5 мл</button>
+                <button data-volume="10" class="volume-btn" onclick="updatePrice('product3', 10, 800)">10 мл</button>
+                <button data-volume="15" class="volume-btn" onclick="updatePrice('product3', 15, 1600)">15 мл</button>
+            </div>
+            <div class="order-form">
+                <input type="text" placeholder="Ваше имя">
+                <input type="phone" placeholder="Ваш телефон">
+                <button class="order-btn">Заказать</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePrice(productId, volume, price) {
+            const priceElement = document.getElementById(`price${productId.charAt(productId.length-1)}`);
+            priceElement.textContent = `Цена: ${price} ₽`;
+
+            const buttons = document.querySelectorAll(`#${productId} .volume-btn`);
+            buttons.forEach(btn => btn.classList.remove("active"));
+
+            const selectedButton = document.querySelector(`#${productId} .volume-btn[data-volume="${volume}"]`);
+            selectedButton.classList.add("active");
+        }
+    </script>
+</body>
+</html>
